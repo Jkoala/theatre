@@ -1,0 +1,56 @@
+server:
+  port: 8001
+  undertow:
+    io-threads: 2
+    worker-threads: 36
+    buffer-size: 1024
+    directBuffers: true
+  servlet:
+    session:
+      timeout: 86400s
+
+logging:
+  file: ./logs/log.log
+
+spring:
+
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/theatre?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      validation-query: SELECT 1
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      filters: stat
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 3000000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      username: root
+      password: root
+
+  thymeleaf:
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+    enabled: true
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  jpa:
+    hibernate:
+      show-sql: true
+      ddl-auto: update
+
+debug: true
