@@ -41,14 +41,13 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/user.*")
                 .addPathPatterns("/user/**")
-                .addPathPatterns("/backup/**")
                 .excludePathPatterns("/user/login")
                 .excludePathPatterns("/user/getLogin")
                 .excludePathPatterns("/static/**");
 
         registry.addInterceptor(localeInterceptor)
-                .addPathPatterns("/admin.*")
-                .addPathPatterns("/admin/**")
+                .addPathPatterns("/user.*")
+                .addPathPatterns("/user/**")
                 .addPathPatterns("/install");
         registry.addInterceptor(localeChangeInterceptor())
                 .addPathPatterns("/install");
@@ -65,13 +64,9 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/templates/**");
-        registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:///" + System.getProperties().getProperty("user.home") + "/halo/upload/");
-        registry.addResourceHandler("/favicon.ico")
-                .addResourceLocations("classpath:/static/halo-backend/images/favicon.ico");
-        registry.addResourceHandler("/backup/**")
-                .addResourceLocations("file:///" + System.getProperties().getProperty("user.home") + "/halo/backup/");
-    }
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+}
 
 
     /**

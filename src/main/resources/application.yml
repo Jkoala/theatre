@@ -53,4 +53,7 @@ spring:
       show-sql: true
       ddl-auto: update
 
+swagger:
+  base
+
 debug: true
